@@ -1,0 +1,111 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id             String    @id @default(uuid())
+  email          String    @unique
+  hashedPassword String
+  name           String?
+  plan           Plan      @default(FREE)
+  projects       Project[]
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+}
+
+enum Plan {
+  FREE
+  PRO
+  ENTERPRISE
+}
+
+model Project {
+  id          String         @id @default(uuid())
+  user        User           @relation(fields: [userId], references: [id])
+  userId      String
+  name        String
+  slug        String         @unique
+  brief       Json?
+  status      ProjectStatus  @default(DRAFT)
+  schema      ProjectSchema?
+  files       ProjectFile[]
+  generations GenerationRun[]
+  exports     Export[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+enum ProjectStatus {
+  DRAFT
+  GENERATING
+  READY
+  ERROR
+}
+
+model ProjectSchema {
+  id         String   @id @default(uuid())
+  project    Project  @relation(fields: [projectId], references: [id])
+  projectId  String   @unique
+  schemaJson Json
+  version    Int      @default(1)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model ProjectFile {
+  id        String   @id @default(uuid())
+  project   Project  @relation(fields: [projectId], references: [id])
+  projectId String
+  path      String
+  content   String
+  isCustom  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([projectId, path], name: "project_path_idx")
+}
+
+model GenerationRun {
+  id           String           @id @default(uuid())
+  project      Project          @relation(fields: [projectId], references: [id])
+  projectId    String
+  step         GenerationStep
+  status       GenerationStatus @default(PENDING)
+  errorMessage String?
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+}
+
+enum GenerationStep {
+  STEP1_SCHEMA
+  STEP2_CONTENT
+  STEP3_COMPONENTS
+  STEP4_PAGES
+  STEP5_API
+}
+
+enum GenerationStatus {
+  PENDING
+  RUNNING
+  SUCCESS
+  ERROR
+}
+
+model Export {
+  id        String   @id @default(uuid())
+  project   Project  @relation(fields: [projectId], references: [id])
+  projectId String
+  zipUrl    String
+  sizeBytes Int
+  createdAt DateTime @default(now())
+}
