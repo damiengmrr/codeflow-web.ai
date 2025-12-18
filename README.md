@@ -1,77 +1,54 @@
-![CodeFlow Logo](./frontend/public/images/codeflow-logo.png)
+<p align="center">
+  <img src="./frontend/public/images/grand-logo-codeflow-web.png" width="420" />
+</p>
 
-<p align="left">
+<p align="center">
   <img src="https://img.shields.io/badge/version-Beta_0.2-blueviolet?style=flat-square" />
-  <img src="https://img.shields.io/badge/Frontend-Next.js_+_Tailwind-000000?style=flat-square" />
-  <img src="https://img.shields.io/badge/Visual_Editor-Active-orange?style=flat-square" />
+  <img src="https://img.shields.io/badge/Status-Active-brightgreen?style=flat-square" />
+  <img src="https://img.shields.io/badge/Visual_Editor-Enabled-orange?style=flat-square" />
   <img src="https://img.shields.io/badge/Code_Editor-Monaco-blue?style=flat-square" />
   <img src="https://img.shields.io/badge/Powered_by-Groq_AI-blue?style=flat-square" />
 </p>
 
+---
+
 # CodeFlow Web
 
-> **CodeFlow Web** est le cœur visuel de l’écosystème CodeFlow.  
-Il permet de **générer**, **éditer visuellement** et **modifier en code** des sites web modernes à partir d’un simple prompt.
+**CodeFlow Web** est un générateur et éditeur de sites web modernes combinant :
+- IA de génération,
+- éditeur visuel no-code,
+- mode développeur (édition du code réel).
+
+L’objectif est de créer **des sites propres, fonctionnels et premium**, rapidement, sans perdre le contrôle technique.
 
 ---
 
-## 🧠 Concept
+## ✨ Fonctionnalités principales
 
-CodeFlow Web combine **IA + éditeur no-code + mode développeur** dans une seule interface :
-
-- Génération automatique de sites web complets
-- Éditeur visuel type **Wix / Webflow**
-- Mode **Code** avancé (Monaco Editor)
-- Synchronisation via un **schéma JSON central**
-- Prévisualisation temps réel
-
-Objectif :  
-👉 *Créer un site premium fonctionnel en quelques minutes, sans sacrifier la qualité technique.*
-
----
-
-## ✨ Fonctionnalités clés
-
-### 🔹 Génération IA
-- Compréhension du brief utilisateur
-- Création des pages, sections, styles et routes
-- UI/UX moderne et cohérente
-- Structure prête à la production
-
-### 🔹 Éditeur visuel
-- Modification du contenu (textes, images, couleurs)
-- Drag & drop des sections
-- Ajout de blocs prédéfinis :
-  - Hero
-  - Features
-  - Pricing
-  - FAQ
-  - Contact
-- Sauvegarde automatique dans un **schema JSON**
-
-### 🔹 Mode Code
-- Édition directe des fichiers
-- Monaco Editor (VS Code-like)
-- Navigation par fichiers
-- Sync temps réel avec l’éditeur visuel
+- Génération de sites web à partir d’un prompt
+- Structure réelle (pages, composants, styles)
+- Éditeur visuel (drag & drop, sections)
+- Mode Code avec Monaco Editor
+- Synchronisation via un schéma JSON central
+- Prévisualisation en temps réel
 
 ---
 
 ## 🧱 Stack technique
 
-- **Next.js** (App Router)
-- **TypeScript**
-- **TailwindCSS**
-- **Monaco Editor**
-- **Groq API** (LLM)
+- Next.js (App Router)
+- TypeScript
+- TailwindCSS
+- Monaco Editor
+- API IA (Groq)
 - JSON Schema centralisé
 
 ---
 
-## 🚀 Installation locale
+## 🚀 Lancer le projet
 
 ```bash
 git clone https://github.com/damiengmrr/codeflow-web.git
-cd codeflow-web/saas-builder
+cd codeflow-web
 npm install
 npm run dev
